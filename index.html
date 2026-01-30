@@ -1,12 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Idea Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Idea Generator - Unleash Your Creativity</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            color: white;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .ideas-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        #tasks {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-    <h1>Auto-Generated Creative & Profitable Ideas</h1>
-    <p>This page will be updated with new ideas every 10 seconds.</p>
-    <pre id="tasks"></pre>
+    <div class="container">
+        <header>
+            <h1>🚀 AI Idea Generator</h1>
+            <p class="subtitle">Auto-Generated Creative & Profitable Ideas</p>
+        </header>
+        
+        <section class="ideas-section">
+            <h2>Latest Ideas</h2>
+            <p>This page will be updated with new ideas every 10 seconds.</p>
+            <pre id="tasks"></pre>
+        </section>
+        
+        <footer class="footer">
+            <p>Powered by AI • Updated in real-time</p>
+        </footer>
+    </div>
+
     <script>
         fetch('tasks.md')
             .then(response => response.text())
