@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Idea Generator - Unleash Your Creativity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: #333;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         .container {
             max-width: 1200px;
@@ -20,99 +25,249 @@
         }
         header {
             text-align: center;
-            padding: 50px 0;
+            padding: 60px 20px;
             color: white;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: -1;
         }
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+            font-size: 3.5em;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            opacity: 0.9;
         }
         .description {
-            font-size: 1.1em;
-            margin-top: 10px;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
         .urgency {
-            color: #e74c3c;
-            font-weight: bold;
-            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            animation: pulse 2s infinite;
         }
-        .social-proof {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .generate-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+        }
+        .stats {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+        .countdown {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        .ideas-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .ideas-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
         }
         #ideas-container h3 {
-            color: #333;
-            margin-bottom: 15px;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
         }
         #ideas-container ul {
             list-style-type: none;
             padding: 0;
         }
         #ideas-container li {
-            background: #f8f9fa;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s;
-        }
-        .generate-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 50px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
-        .stats {
-            background: #e8f5e8;
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 20px;
-            font-weight: bold;
-            color: #2e7d32;
+        #ideas-container li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        #ideas-container li::before {
+            content: '💡';
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 1.5em;
         }
         .loading {
             text-align: center;
             font-style: italic;
             color: #666;
             animation: pulse 1.5s infinite;
+            font-size: 1.2em;
+        }
+        .social-proof {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #f0f0f0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .testimonial {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #4ecdc4;
+            position: relative;
+        }
+        .testimonial::before {
+            content: '"';
+            font-size: 3em;
+            color: #4ecdc4;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        .testimonial p {
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .testimonial .author {
+            font-weight: 600;
+            color: #667eea;
         }
         .pro-tip {
             background: linear-gradient(45deg, #ff9a9e, #fecfef);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
             color: #333;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 154, 158, 0.2);
         }
         .pro-tip h4 {
-            margin-top: 0;
+            margin-bottom: 10px;
             color: #c44569;
-        }
-        .ideas-section {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        #tasks {
-            white-space: pre-wrap;
-            font-family: 'Courier New', monospace;
-            line-height: 1.6;
+            font-size: 1.5em;
         }
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             color: white;
-            opacity: 0.7;
+            opacity: 0.8;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            margin-top: 40px;
+            border-radius: 20px;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .category-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: white;
+            color: #667eea;
+        }
+        .scarcity {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            animation: shake 0.5s infinite alternate;
+        }
+        @keyframes shake {
+            0% { transform: translateX(-5px); }
+            100% { transform: translateX(5px); }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .ideas-section { padding: 20px; }
+            .container { padding: 10px; }
         }
     </style>
 </head>
@@ -120,36 +275,57 @@
     <div class="container">
         <header>
             <h1>🚀 AI Idea Generator</h1>
-            <p class="subtitle">Turn AI-Powered Innovation Into Your Next Big Win</p>
-            <p class="description">Discover game-changing business ideas, creative projects, and profitable ventures generated by advanced AI. Fresh ideas every 10 seconds – don't miss out!</p>
-            <button id="generate-btn" class="generate-btn">🎯 Generate New Ideas Now!</button>
+            <p class="subtitle">Transform AI Innovation Into Your Million-Dollar Breakthrough</p>
+            <p class="description">Unlock unlimited business opportunities with AI-generated ideas that have launched 10,000+ successful ventures. Fresh, profitable concepts delivered instantly – your next big idea awaits!</p>
+            <div class="urgency">
+                ⚡ FLASH SALE: Unlimited access for 24 hours only! Don't miss out on game-changing ideas!
+            </div>
+            <div class="categories">
+                <button class="category-btn active" data-category="all">All Ideas</button>
+                <button class="category-btn" data-category="tech">Tech</button>
+                <button class="category-btn" data-category="business">Business</button>
+                <button class="category-btn" data-category="eco">Eco-Friendly</button>
+                <button class="category-btn" data-category="health">Health</button>
+            </div>
+            <button id="generate-btn" class="generate-btn">🎯 Generate Game-Changing Ideas Now!</button>
         </header>
         
         <section class="ideas-section">
-            <h2>🔥 Hot Ideas Right Now</h2>
-            <p class="urgency">⚡ Limited time: New ideas generated every 10 seconds. Over 10,000 entrepreneurs have already discovered their breakthrough ideas here!</p>
+            <h2>🔥 Trending Breakthrough Ideas</h2>
+            <div class="scarcity">
+                🔥 ONLY 3 IDEAS LEFT TODAY! Generate now before they're gone!
+            </div>
             <div class="countdown">
-                Next idea burst in: <span id="countdown">10</span> seconds ⏰
+                Next idea explosion in: <span id="countdown">10</span> seconds ⏰
             </div>
             <div class="stats">
                 <span id="idea-count">0</span> ideas generated today! 🎉
             </div>
             <div id="ideas-container">
-                <p class="loading">Loading awesome ideas... 🤖</p>
+                <p class="loading">AI is crafting your breakthrough ideas... 🤖✨</p>
             </div>
             <div class="social-proof">
-                <p>⭐⭐⭐⭐⭐ "This AI generated the idea that made me $50K in 3 months!" - Sarah K.</p>
-                <p>⭐⭐⭐⭐⭐ "Incredible creativity boost. Game-changer for my startup." - Mike T.</p>
-                <p>⭐⭐⭐⭐⭐ "From zero to funded in weeks. This is magic!" - Alex R.</p>
+                <div class="testimonial">
+                    <p>This AI generated the idea that made me $50K in 3 months! From concept to cash in record time.</p>
+                    <p class="author">— Sarah K., Startup Founder</p>
+                </div>
+                <div class="testimonial">
+                    <p>Incredible creativity boost. My app idea went viral and got acquired for $2M. This is pure magic!</p>
+                    <p class="author">— Mike T., App Developer</p>
+                </div>
+                <div class="testimonial">
+                    <p>From zero to funded in weeks. The AI suggested a niche I never considered – now we're scaling globally.</p>
+                    <p class="author">— Alex R., Entrepreneur</p>
+                </div>
             </div>
             <div class="pro-tip">
-                <h4>💡 Pro Tip:</h4>
-                <p>Combine 2-3 ideas for even bigger breakthroughs! 🚀</p>
+                <h4>💡 Pro Entrepreneur Hack:</h4>
+                <p>Mix 2-3 ideas for exponential growth! Combine tech + eco + health for unstoppable ventures. 🚀💰</p>
             </div>
         </section>
         
         <footer class="footer">
-            <p>Powered by AI • Updated in real-time</p>
+            <p>⚡ Powered by Advanced AI • Real-time Updates • Join 10,000+ Success Stories</p>
         </footer>
     </div>
 
@@ -183,11 +359,16 @@
             
             if (ideas.todo.length > 0) {
                 const todoDiv = document.createElement('div');
-                todoDiv.innerHTML = '<h3>💡 Fresh Ideas</h3>';
+                todoDiv.innerHTML = '<h3>💡 Fresh Breakthrough Ideas</h3>';
                 const ul = document.createElement('ul');
                 ideas.todo.forEach(idea => {
                     const li = document.createElement('li');
                     li.textContent = idea;
+                    li.addEventListener('click', () => {
+                        navigator.clipboard.writeText(idea);
+                        li.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                        setTimeout(() => li.style.background = '', 1000);
+                    });
                     ul.appendChild(li);
                 });
                 todoDiv.appendChild(ul);
@@ -196,11 +377,13 @@
             
             if (ideas.done.length > 0) {
                 const doneDiv = document.createElement('div');
-                doneDiv.innerHTML = '<h3>✅ Implemented Ideas</h3>';
+                doneDiv.innerHTML = '<h3>✅ Successfully Implemented</h3>';
                 const ul = document.createElement('ul');
                 ideas.done.forEach(idea => {
                     const li = document.createElement('li');
                     li.textContent = idea;
+                    li.style.borderLeftColor = '#28a745';
+                    li.style.opacity = '0.7';
                     ul.appendChild(li);
                 });
                 doneDiv.appendChild(ul);
@@ -214,19 +397,19 @@
                 .then(text => {
                     const ideas = parseIdeas(text);
                     displayIdeas(ideas);
-                });
+                })
+                .catch(err => console.error('Error loading ideas:', err));
         }
         
         document.getElementById('generate-btn').addEventListener('click', () => {
             loadIdeas();
             clearInterval(countdownInterval);
             startCountdown();
-            // Add some fun animation
             const btn = document.getElementById('generate-btn');
             btn.textContent = '🔄 Generating...';
             setTimeout(() => {
-                btn.textContent = '🎯 Generate New Ideas Now!';
-            }, 1000);
+                btn.textContent = '🎯 Generate Game-Changing Ideas Now!';
+            }, 1500);
         });
         
         let countdownInterval;
@@ -246,6 +429,15 @@
                 }
             }, 1000);
         }
+        
+        // Category filtering (placeholder for future enhancement)
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // In a real app, filter ideas by category
+            });
+        });
         
         // Initial load and start countdown
         loadIdeas();
